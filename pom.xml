@@ -6,7 +6,7 @@
 	<groupId>com.yefan</groupId>
 	<artifactId>concurrency</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>concurrency</name>
 	<description>Demo project for Spring Boot</description>
@@ -35,7 +35,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
