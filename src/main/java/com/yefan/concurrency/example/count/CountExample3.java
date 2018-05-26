@@ -21,6 +21,10 @@ public class CountExample3 {
 
     /**
      * volatile 只保证可见性，不能保证原子性
+     *
+     * volatile 用法：
+     * volatile 对变量写不依赖当前值
+     * 
      */
     private static volatile int COUNT = 0;
 

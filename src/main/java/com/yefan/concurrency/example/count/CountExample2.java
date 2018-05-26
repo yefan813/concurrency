@@ -1,5 +1,6 @@
 package com.yefan.concurrency.example.count;
 
+import com.yefan.concurrency.annoations.NoThreadSafe;
 import com.yefan.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-@ThreadSafe("线程安全的写法")
+@NoThreadSafe("线程安全的写法")
 public class CountExample2 {
 
     //请求总数
