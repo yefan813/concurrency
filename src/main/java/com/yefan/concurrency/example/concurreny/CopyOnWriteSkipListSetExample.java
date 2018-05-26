@@ -1,23 +1,18 @@
-package com.yefan.concurrency.example.commonUnSafe;
+package com.yefan.concurrency.example.concurreny;
 
-import com.yefan.concurrency.annoations.NoThreadSafe;
+import com.yefan.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.Set;
+import java.util.concurrent.*;
 
 @Slf4j
-@NoThreadSafe
-public class ArrayListExample {
+@ThreadSafe
+public class CopyOnWriteSkipListSetExample {
 
     // 线程不安全
-    private static List<Integer> list = new ArrayList<>();
+    private static Set<Integer> set = new ConcurrentSkipListSet<>();
+
     //请求总数
     private static int clientTotal = 5000;
 
@@ -31,10 +26,11 @@ public class ArrayListExample {
         Semaphore semaphore = new Semaphore(threadTotal);
         CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
         for (int i = 0; i < clientTotal; i++) {
+            final int count = i;
             exec.execute(() -> {
                 try {
                     semaphore.acquire();
-                    add();
+                    add(count);
                     semaphore.release();
 
                 } catch (InterruptedException e) {
@@ -46,11 +42,11 @@ public class ArrayListExample {
         }
         countDownLatch.await();
         exec.shutdown();
-        log.info("count:{}" , list.size());
+        log.info("count:{}" , set.size());
 
     }
 
-    private static void add(){
-        list.add(1);
+    private static void add(int i){
+        set.add(i);
     }
 }

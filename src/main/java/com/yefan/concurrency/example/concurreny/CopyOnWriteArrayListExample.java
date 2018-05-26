@@ -1,23 +1,20 @@
-package com.yefan.concurrency.example.commonUnSafe;
+package com.yefan.concurrency.example.concurreny;
 
 import com.yefan.concurrency.annoations.NoThreadSafe;
+import com.yefan.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 @Slf4j
-@NoThreadSafe
-public class ArrayListExample {
+@ThreadSafe
+public class CopyOnWriteArrayListExample {
 
     // 线程不安全
-    private static List<Integer> list = new ArrayList<>();
+    private static List<Integer> list = new CopyOnWriteArrayList<>();
+
     //请求总数
     private static int clientTotal = 5000;
 
